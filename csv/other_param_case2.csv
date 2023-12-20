@@ -1,0 +1,2 @@
+cost_ship,capa_track,capa_reload,T,cost_penalty,cost_track,cost_new_reload,max_reload,max_tracks
+150,10,12,14,20000,7500,12000,12,4

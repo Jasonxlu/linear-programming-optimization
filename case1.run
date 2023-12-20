@@ -1,0 +1,122 @@
+# This file contains the run script for Phase 2 Case 1 of IEMS 313 SmartRail project.
+#
+# Author: Jason Lu, Rhea Shah, Hugo Zhang, Gabe Bider
+# Date: May 29, 2023
+
+# Load the CSV file reader
+load amplcsv.dll;
+
+# reset in case we want to run this file mutliple times in the same AMPL session
+reset;
+
+# Start log file
+option log_file Case1.log;
+
+
+# load the model
+model Phase2.mod;
+
+# load the data from the csv files.
+table Stations IN "amplcsv" "stations_case1.csv": stations <- [stations], num_reload, x_coord, y_coord;
+table TrackList IN "amplcsv" "tracks_case1.csv": tracks <- [to_station, from_station];
+table Shipments IN "amplcsv" "shipments_case1.csv": shipments <- [shipments], orig, dest, volume, avail_day, deliv_day;
+table OtherParam IN "amplcsv" "other_param_case1.csv": [], cost_ship, capa_track, capa_reload, T, cost_penalty, cost_track, cost_new_reload, max_reload, max_tracks; 
+
+# Read the tables to get each parameter
+read table Stations;
+read table TrackList;
+read table Shipments;
+read table OtherParam;
+
+# Initializing the set days with parameter T
+data;
+set days;
+for {d in 0..T} {
+    let days := days union {d};
+}
+
+# Initialize a set of reverse tracks from what was given in the CSV
+# Used to union with CSV tracks to create a full set of tracks
+data;
+set tracks_reverse;
+# Populate the set of tracks_reverse
+for {(i, j) in tracks} {
+    let tracks_reverse := tracks_reverse union {(j, i)};
+}
+
+# Combine both sets of tracks
+data;
+let tracks := tracks union tracks_reverse;
+
+
+# Choose the MILP solver
+option solver gurobi;
+
+# Tell the MILP solve to produce some output so that we can see progress.
+option gurobi_options "outlev=1";
+
+# Solve the system
+solve;
+
+# Display the cost breakdown for easier analysis
+display total_ship_cost;
+display total_late_cost;
+display new_reloads_cost;
+display new_tracks_cost;
+
+# Display each shipment's container travel route and how many containers are delivered each day per shipment
+for {k in shipments, d in days: d > 0} {
+  if sum{(i,j) in tracks} N[i,j,k,d]>0 then printf "\nContainer load per track for shipment %s on day %s:\n\n", k, d;
+
+  for {(i,j) in tracks: N[i,j,k,d] > 0} {
+     printf "  %3d --> %3d: %3d\n", i,j, N[i,j,k,d];
+  }
+  if sum{(i,j) in tracks} N[i,j,k,d]>0 then printf "Containers Delivered on day %s:%3d\n", d, deliver[dest[k],k,d];
+  if sum{(i,j) in tracks} N[i,j,k,d]>0 then printf "\n ----------------------------------\n"
+}
+
+# Check if pickup and deliver = volume[k]
+/*
+for {k in shipments} {
+  printf "\nContainers picked up for shipment %s: %d\n\n", k, sum{i in stations, d in days} pickup[i,k,d];
+}
+
+for {k in shipments} {
+  printf "\nContainers delivered for shipment %s: %d\n\n", k, sum{i in stations, d in days} deliver[i,k,d];
+}*/
+
+
+# Check how many containers travel between each set of tracks
+printf "\nTotal load per track:\n\n";
+for {(i,j) in tracks: i < j} {
+  printf "%3d-->%3d: %3d  num_tracks: %3d\n", i, j, sum{k in shipments, d in days} (N[i,j,k,d] + N[j,i,k,d]), new_tracks[i,j] + 1;
+}
+
+# Check how many containers pass through each station
+printf "\nTotal load per station:\n\n";
+for {i in stations} {
+  printf "%3d: %5d\n", i, sum{k in shipments, (i,j) in tracks, d in days} (N[i,j,k,d] + N[j,i,k,d]);
+} 
+
+# Check how many reloading zones are built per station
+printf "\nNew Reloading Zones per Station:\n\n";
+for {i in stations} {
+  printf "Station %s: %5d\n", i, new_reload_zones[i];
+} 
+
+# Check how many new tracks are built between stations
+printf "\nNew tracks between stations:\n\n";
+for {(i,j) in tracks: i<j} {
+     printf "  %3d --> %3d: %3d\n", i,j, new_tracks[i,j];
+  }
+
+# Check how many containers are late for each shipment
+printf "\nLate containers for each shipment:\n\n";
+for {k in shipments} {
+     printf "  Shipment %s --> %5d \n", k, sum{d in days: d > deliv_day[k]} deliver[dest[k],k,d];
+  }
+
+# Stop log file
+option log_file '';
+close;
+

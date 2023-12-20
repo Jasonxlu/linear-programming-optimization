@@ -1,0 +1,549 @@
+Gurobi 10.0.0: Set parameter OutputFlag to value 1
+tech:outlev=1
+Set parameter InfUnbdInfo to value 1
+Gurobi Optimizer version 10.0.0 build v10.0.0rc2 (mac64[rosetta2])
+
+CPU model: Apple M1 Pro
+Thread count: 10 physical cores, 10 logical processors, using up to 10 threads
+
+Optimize a model with 2790 rows, 5269 columns and 22410 nonzeros
+Model fingerprint: 0xf373fda5
+Variable types: 0 continuous, 5269 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+01]
+  Objective range  [1e+04, 4e+07]
+  Bounds range     [3e+00, 2e+02]
+  RHS range        [5e+00, 4e+01]
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R822 by 30.000000000
+
+Presolve removed 1342 rows and 1959 columns
+Presolve time: 0.04s
+Presolved: 1448 rows, 3310 columns, 13599 nonzeros
+Variable types: 0 continuous, 3310 integer (0 binary)
+Found heuristic solution: objective 7.099960e+08
+Found heuristic solution: objective 6.863854e+08
+
+Root relaxation: objective 2.330439e+07, 347 iterations, 0.01 seconds (0.00 work units)
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                    3.863091e+07 2.3304e+07  39.7%     -    0s
+     0     0 2.3304e+07    0    3 3.8631e+07 2.3304e+07  39.7%     -    0s
+H    0     0                    3.857140e+07 2.3304e+07  39.6%     -    0s
+     0     0 3.3899e+07    0    6 3.8571e+07 3.3899e+07  12.1%     -    0s
+H    0     0                    3.838678e+07 3.3899e+07  11.7%     -    0s
+H    0     0                    3.836997e+07 3.3899e+07  11.7%     -    0s
+
+Cutting planes:
+  Gomory: 3
+  MIR: 14
+  Zero half: 3
+
+Explored 1 nodes (358 simplex iterations) in 0.14 seconds (0.10 work units)
+Thread count was 10 (of 10 available processors)
+
+Solution count 6: 3.837e+07 3.83868e+07 3.85714e+07 ... 7.09996e+08
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.836996985759e+07, best bound 3.836996985759e+07, gap 0.0000%
+Gurobi 10.0.0: optimal solution; objective 38369969.86
+358 simplex iterations
+1 branching nodes
+absmipgap=7.45058e-09, relmipgap=1.94177e-16
+total_ship_cost = 14835500
+
+total_late_cost = 1500000
+
+new_reloads_cost = 180000
+
+new_tracks_cost = 21854400
+
+
+Container load per track for shipment Company_A_4_7 on day 1:
+
+    4 -->   6:  10
+    4 -->   1:  10
+Containers Delivered on day 1:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_A_4_7 on day 2:
+
+    1 -->   3:  10
+    4 -->   6:  10
+    6 -->   7:  10
+Containers Delivered on day 2: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_A_4_7 on day 3:
+
+    3 -->   7:  10
+    6 -->   7:  10
+Containers Delivered on day 3: 20
+
+ ----------------------------------
+
+Container load per track for shipment Company_A_3_2 on day 3:
+
+    3 -->   5:   5
+Containers Delivered on day 3:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_A_3_2 on day 4:
+
+    5 -->   2:   5
+Containers Delivered on day 4:  5
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 8:
+
+    1 -->   4:  10
+    1 -->   8:   7
+Containers Delivered on day 8:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 9:
+
+    1 -->   4:   2
+    1 -->   8:   7
+    4 -->   6:   7
+    4 -->   8:   3
+    8 -->   9:   7
+Containers Delivered on day 9:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 10:
+
+    1 -->   8:  10
+    4 -->   6:   2
+    6 -->   9:   7
+    8 -->   9:  10
+    9 -->  10:   7
+Containers Delivered on day 10:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 11:
+
+    6 -->   9:   2
+    8 -->   9:  10
+    9 -->  10:  17
+   10 -->  11:   7
+Containers Delivered on day 11:  7
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 12:
+
+    9 -->  10:  12
+   10 -->  11:  17
+Containers Delivered on day 12: 17
+
+ ----------------------------------
+
+Container load per track for shipment Company_B_1_11 on day 13:
+
+   10 -->  11:  12
+Containers Delivered on day 13: 12
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 5:
+
+   13 -->  14:   3
+   13 -->   7:  10
+Containers Delivered on day 5:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 6:
+
+   13 -->  14:  10
+   14 -->   3:   3
+    7 -->   6:  10
+   13 -->   7:  10
+Containers Delivered on day 6:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 7:
+
+    3 -->   1:   3
+   14 -->   3:  10
+    6 -->   4:  10
+    7 -->   6:  10
+   13 -->   7:   3
+Containers Delivered on day 7:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 8:
+
+    1 -->   8:   3
+    4 -->   8:  10
+    6 -->   9:   3
+    3 -->   1:  10
+    6 -->   4:   7
+    7 -->   6:   3
+   13 -->   7:   6
+Containers Delivered on day 8: 13
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 9:
+
+    1 -->   4:   7
+    1 -->   8:   3
+    4 -->   8:   7
+    6 -->   4:   3
+    7 -->   6:   6
+    9 -->   8:   3
+Containers Delivered on day 9: 13
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 10:
+
+    4 -->   8:  10
+    6 -->   4:   6
+Containers Delivered on day 10: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_8 on day 11:
+
+    4 -->   8:   6
+Containers Delivered on day 11:  6
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_1 on day 4:
+
+   13 -->  14:  10
+Containers Delivered on day 4:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_1 on day 5:
+
+   13 -->  14:   7
+   14 -->   3:  10
+Containers Delivered on day 5:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_1 on day 6:
+
+    3 -->   1:  10
+   14 -->   3:   7
+Containers Delivered on day 6: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_1 on day 7:
+
+    3 -->   1:   7
+Containers Delivered on day 7:  7
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_7 on day 2:
+
+   13 -->   7:  10
+Containers Delivered on day 2: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_7 on day 3:
+
+   13 -->   7:  10
+Containers Delivered on day 3: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_7 on day 4:
+
+   13 -->   7:  10
+Containers Delivered on day 4: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_7 on day 10:
+
+   13 -->   7:   2
+Containers Delivered on day 10:  2
+
+ ----------------------------------
+
+Container load per track for shipment Company_C_13_7 on day 12:
+
+   13 -->   7:  10
+Containers Delivered on day 12: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_6 on day 11:
+
+    5 -->   7:   6
+Containers Delivered on day 11:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_6 on day 12:
+
+    7 -->   6:   6
+Containers Delivered on day 12:  6
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 5:
+
+    5 -->  14:   3
+Containers Delivered on day 5:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 6:
+
+    5 -->  14:   3
+   14 -->  15:   3
+Containers Delivered on day 6:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 7:
+
+    5 -->   7:   7
+   14 -->  15:   3
+   15 -->   6:   3
+Containers Delivered on day 7:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 8:
+
+    5 -->   7:   3
+    6 -->   9:   3
+    7 -->   6:   7
+   15 -->   6:   3
+Containers Delivered on day 8:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 9:
+
+    5 -->   7:   8
+    6 -->   9:  10
+    9 -->  10:   3
+    7 -->   6:   3
+Containers Delivered on day 9:  3
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 10:
+
+    5 -->   7:  10
+    6 -->   9:   3
+    9 -->  10:  10
+    7 -->   6:   8
+Containers Delivered on day 10: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 11:
+
+    6 -->   9:   8
+    9 -->  10:   3
+    7 -->   6:  10
+Containers Delivered on day 11:  3
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 12:
+
+    6 -->   9:  10
+    9 -->  10:   8
+Containers Delivered on day 12:  8
+
+ ----------------------------------
+
+Container load per track for shipment Company_D_5_10 on day 13:
+
+    9 -->  10:  10
+Containers Delivered on day 13: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 1:
+
+    3 -->  14:   9
+Containers Delivered on day 1:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 2:
+
+    3 -->  14:  10
+   14 -->  13:   9
+Containers Delivered on day 2:  9
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 3:
+
+   14 -->  13:  10
+Containers Delivered on day 3: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 6:
+
+    3 -->   7:   7
+Containers Delivered on day 6:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 7:
+
+    3 -->   7:   4
+    7 -->  13:   7
+Containers Delivered on day 7:  7
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 8:
+
+    3 -->   7:  10
+    7 -->  13:   4
+Containers Delivered on day 8:  4
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_13 on day 9:
+
+    7 -->  13:  10
+Containers Delivered on day 9: 10
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_15 on day 4:
+
+    3 -->  14:  10
+Containers Delivered on day 4:  0
+
+ ----------------------------------
+
+Container load per track for shipment Company_E_3_15 on day 5:
+
+   14 -->  15:  10
+Containers Delivered on day 5: 10
+
+ ----------------------------------
+
+Total load per track:
+
+  1-->  3:  40  num_tracks:   1
+  1-->  4:  29  num_tracks:   1
+  1-->  8:  30  num_tracks:   1
+  2-->  5:   5  num_tracks:   1
+  3-->  5:   5  num_tracks:   1
+  3-->  7:  31  num_tracks:   1
+  3--> 14:  59  num_tracks:   1
+  4-->  6:  55  num_tracks:   1
+  4-->  8:  36  num_tracks:   1
+  4--> 12:   0  num_tracks:   1
+  5-->  7:  34  num_tracks:   1
+  5--> 14:   6  num_tracks:   1
+  6-->  7:  83  num_tracks:   1
+  6-->  9:  46  num_tracks:   1
+  6--> 15:   6  num_tracks:   1
+  7--> 13:  92  num_tracks:   1
+  8-->  9:  30  num_tracks:   1
+  9--> 10:  70  num_tracks:   2
+ 10--> 11:  36  num_tracks:   2
+ 12--> 15:   0  num_tracks:   1
+ 13--> 14:  49  num_tracks:   1
+ 14--> 15:  16  num_tracks:   1
+
+Total load per station:
+
+  1:    99
+  2:     5
+  3:   135
+  4:   120
+  5:    50
+  6:   190
+  7:   240
+  8:    96
+  9:   146
+ 10:   106
+ 11:    36
+ 12:     0
+ 13:   141
+ 14:   130
+ 15:    22
+
+New Reloading Zones per Station:
+
+Station 1:     0
+Station 2:     0
+Station 3:     0
+Station 4:     0
+Station 5:     0
+Station 6:     0
+Station 7:     0
+Station 8:     0
+Station 9:     0
+Station 10:     1
+Station 11:     0
+Station 12:     0
+Station 13:     0
+Station 14:     0
+Station 15:     0
+
+New tracks between stations:
+
+    1 -->   3:   0
+    1 -->   4:   0
+    1 -->   8:   0
+    2 -->   5:   0
+    3 -->   5:   0
+    3 -->   7:   0
+    3 -->  14:   0
+    4 -->   6:   0
+    4 -->   8:   0
+    4 -->  12:   0
+    5 -->   7:   0
+    5 -->  14:   0
+    6 -->   7:   0
+    6 -->   9:   0
+    6 -->  15:   0
+    7 -->  13:   0
+    8 -->   9:   0
+    9 -->  10:   1
+   10 -->  11:   1
+   12 -->  15:   0
+   13 -->  14:   0
+   14 -->  15:   0
+
+Late containers for each shipment:
+
+  Shipment Company_A_4_7 -->     0 
+  Shipment Company_A_3_2 -->     0 
+  Shipment Company_B_1_11 -->     0 
+  Shipment Company_C_13_8 -->    16 
+  Shipment Company_C_13_1 -->     0 
+  Shipment Company_C_13_7 -->    12 
+  Shipment Company_D_5_6 -->     0 
+  Shipment Company_D_5_10 -->     0 
+  Shipment Company_E_3_13 -->     0 
+  Shipment Company_E_3_15 -->     0 
